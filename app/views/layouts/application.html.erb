@@ -28,23 +28,54 @@
 
 	<div class="container">
 
-	<div class="masthead">
-        <ul class="nav nav-pills pull-right">
-              <li
-	              <% if params[:controller] == "main" and params[:action] == "how_it_works" %>
-				    class="active"
-				    <% end %>
-              	>
-              	<a href="<%= how_it_works_path %>">How it Works</a></li>
-        </ul>
-        <h3 class="muted"><a href="<%= root_path %>">Two Bees</a></li></h3>
-      </div>
+<!--header -->
+  
+  <div class="masthead">
 
-      <hr>
+    <ul class="nav nav-pills pull-right">
+      <li class=" <%= "active" if @sitesection == :how_it_works %>">  
+        <a href=" <%= how_it_works_path %> ">How it Works</a>
+      </li>
+      <li class=" <%= "active" if @sitesection == :explore %>">
+        <a href=" <%= tobes_path %> ">Aspirations</a></li>
+      </li>
+              
+    <% if user_signed_in? %>
+      <li> 
+      
+      </li>
+    <% else %>
+      <li>
+        <a href="<%= new_user_session_path %>">Log in </a>
+      </li>
+      <li>
+        <a href="<%= new_user_registration_path %>">Sign up </a>
+      </li>
+    <% end %>
+    </ul>
 
+
+    <h1 class="muted"><a href="<%= root_path %>">Two Bees</a></h1>
+     <% if user_signed_in? %>
+     <p> 
+      Hello, <%= current_user.email %> (<%= link_to "Log Out", destroy_user_session_path, :method => :delete %>)
+      </p> 
+      <% end %>
+  </div>
+  <hr>
+  
+  <%= bootstrap_flash %>
+  <div class="body">
+<!-- The main part of the site -->
+     
       <%= yield %>
 
-  	</div>
+<!-- end main part of the site -->
+
+    </div>
+  </div>
+
+
 
     <!-- Le javascript
     ================================================== -->

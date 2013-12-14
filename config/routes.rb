@@ -1,9 +1,17 @@
 TwoBees::Application.routes.draw do
 
 
+  devise_for :users
   root 'main#index'
 
+
+  resources :tobes
+  resources :users
+
   get 'how_it_works' => 'main#how_it_works'
+  
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

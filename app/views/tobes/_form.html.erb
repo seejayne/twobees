@@ -1,0 +1,24 @@
+<% if @tobe.errors.any? %>
+	<h4>There were errors saving your to be</h4>
+	<ul>
+		<% @tobe.errors.full_messages.each do |msg| %>
+		<li><%= msg %></li>
+		<% end %>
+
+	</ul>
+<% end %>
+
+<%= form_for @tobe do |f| %>
+
+	<%= f.label :title, "I want to be..." %>
+	<%= f.text_field :title %>
+
+	<%= f.label :reason, "because..." %>
+	<%= f.text_area :reason %>
+
+	<%= f.label :description, "description" %>
+	<%= f.text_area :description, :size => "30x10" %>
+
+	<%= f.submit "Submit" %>
+
+<% end %>

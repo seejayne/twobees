@@ -1,0 +1,18 @@
+	<h2> I want to be <%= @tobe.title %> because <%= @tobe.reason %> </h2>
+	
+	<h2>
+			<%= @tobe.description %>
+	</h2>
+
+	<h4>	
+		posted by <a href="<%= user_path(@tobe.user) %>"> <%= @tobe.user.email %></a>
+	</h4>
+
+	</p>
+
+	<div>
+		<a href="<%= edit_tobe_path( @tobe ) %>" class="btn">Edit To Be</a>
+	</div>
+	<div>
+		<%= button_to "Delete To Be", tobe_path(@tobe), :method => :delete, :class => "btn"  %>
+	</div>
