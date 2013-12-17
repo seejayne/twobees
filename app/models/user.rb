@@ -5,5 +5,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :tobes  
-  has_many :journals      
+  has_many :journals    
+
+  after_create :send_welcome_email #active record callbacks
+
+   def send_welcome_email
+  	UserMailer.welcome_email(self).deliver
+  end
+    
 end

@@ -16,10 +16,12 @@
 		posted by <a href="<%= user_path(@tobe.user) %>"> <%= @tobe.user.email %></a> <%= time_ago_in_words( @tobe.created_at ) %> ago
 		</p>
 		<hr>
-		<div>
+		<% if user_signed_in? %>
+			<div>
 				<a href="<%= edit_tobe_path( @tobe ) %>" class="btn">Edit To Be</a><br>
 				<%= button_to "Delete To Be", tobe_path(@tobe), :method => :delete, :class => "btn"  %>
-		</div>
+			</div>
+		<% end %>
 	</div>
 	<div id="span4">
 		<h2> Notes: </h2>
@@ -33,7 +35,7 @@
 				<%= f.text_field :title, :class => "field span4", :placeholder => "Title" %><br>
 				<%= f.text_area :body, :class => "field span4", :placeholder => "Entry", :rows => 8, :cols => 40 %>
 				<br>
-				<%= f.submit "Submit Journal" %>
+				<%= f.submit "Submit Journal", :class => "btn btn-primary"   %>
 			<% end %>
 		<% end %>
 	</div>	

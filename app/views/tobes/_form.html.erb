@@ -12,14 +12,14 @@
 
 	<%= label_tag :category %>
 
-    <%= text_field_tag :category, @category, :data => { :provide => "typeahead", :source => @categories }, :autocomplete => "off", :required => true, :class => "field span6", :rows => "6" %>
+    <%= text_field_tag :category, @category, :data => { :provide => "typeahead", :source => @categories }, :autocomplete => "off", :required => true, :class => "field span6", :rows => "6", :maxlength => 20 %>
 
 
 	<%= f.label :title, "I want to be..." %>
-	<%= f.text_field :title, :class => "field span6" %>
+	<%= f.text_field :title, :class => "field span6", :maxlength => 50 %>
 
 	<%= f.label :reason, "because..." %>
-	<%= f.text_area :reason, :class => "field span6" %>
+	<%= f.text_field :reason, :class => "field span6", :maxlength => 75 %>
 
 	<%= f.label :description, "More Details" %>
 	<%= f.text_area :description, :class => "field span6", :rows => "6" %>
@@ -27,7 +27,7 @@
 	<%= f.label :image %>
 	<%= f.file_field :image %>
 	<hr>
-	<%= f.submit "Submit", :class => "btn" %>
+	<%= f.submit "Submit", :class => "btn btn-primary" %>
 
 <% end %>
 

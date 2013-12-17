@@ -1,19 +1,17 @@
-<ul class="breadcrumb">
-  <li><a href="<%= tobe_path %>">All</a> <span class="divider">/</span></li>
-  <li class="active"><%= @category.title %></li>
-</ul>
-
 <h2><%= @category.title %> Aspirations</h2> 
 
 <br/>
 
-<h3>
+
 <ul class="unstyled">
     <% @category.tobes.each do |tobe| %>
-      <li><a href="<%= tobe_path(tobe) %>"> I want to be <%= tobe.title %></a></li>
+      <li><h3><a href="<%= tobe_path(tobe) %>"> I want to be <%= tobe.title %> because <%= tobe.reason %></a></h3></li>
+      <a href="<%= user_path(tobe.user) %>"> <%= tobe.user.email %></a>
     <% end %>
   </ul>
 
-</h3> 
 
-<%= button_to "Delete Category", category_path(@category), :method => :delete, :class => "btn"  %>
+
+<% if user_signed_in? %>
+	<%= button_to "Delete Category", category_path(@category), :method => :delete, :class => "btn"  %>
+<% end %>
