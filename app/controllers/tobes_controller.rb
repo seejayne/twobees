@@ -4,7 +4,7 @@ class TobesController < ApplicationController
 
 
 	def index
-		@tobes = Tobe.all
+		@tobes = Tobe.order("created_at DESC")
 		@sitesection = :explore
 	end
 

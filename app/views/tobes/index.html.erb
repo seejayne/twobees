@@ -2,18 +2,23 @@
 	<div class = "span-10">
 		<h2>Everyone's aspirations</h2>
 	</div>
-	<div class = "span-2">
+	<div class = "span-2 pull-right" >
 		<a class="btn btn-primary btn-large" href="<%= new_tobe_path %>"> New To-Be </a>
 	</div>
 </div>
 		
-<h4>
-<ul>
-	<% @tobes.each do | tobe | %>
-		<li> 
-		<a href="<%= tobe_path(tobe) %>">
-			I want to be <%= tobe.title %> because <%= tobe.reason %>
-		</a>
-	<% end %>
+ <ul class="thumbnails">
+ 	<% @tobes.each do | tobe | %>
+      <li class="span3">
+      	<div class="thumbnail" style="height:350px; padding:10px">
+          <img src ="<%= image_path("thumbnail.png") %>">
+          	<div class="caption">
+	      		<h4><a href="<%= tobe_path(tobe) %>">I want to be <%= tobe.title %> because <%= tobe.reason %></a></h4>
+				<p> - <a href="#"> User email goes here.</a><br>
+				<%= time_ago_in_words( tobe.created_at ) %> ago
+			</div>
+		</div>
+		</p>
+      </li>
+     <% end %>
 </ul>
-</h4>

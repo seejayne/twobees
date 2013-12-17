@@ -1,8 +1,6 @@
 <li>
-  <p><b><%= journal.title%></b><br>
-	<%= journal.body%>
-  </p>
-  <p>
-  	Entry posted <%= time_ago_in_words( journal.created_at ) %> ago
+  <h4><b><%= journal.title%></b></h4>
+  <p><%= journal.body%><br>
+	Posted by: <a href="<%= user_path(@tobe.user) %>"> <%= @tobe.user.email %></a>, <%= time_ago_in_words( journal.created_at ) %> ago
   </p>
 </li>

@@ -1,49 +1,40 @@
-<h2> I want to be <%= @tobe.title %> because <%= @tobe.reason %> </h2>
+<div class="row">
+	<div class="span7">
+		<h2>I want to be: </h2>
+		<h4> <%= @tobe.title %> because <%= @tobe.reason %> </h4>
 
-<h4>
-	<%= @tobe.description %>
-</h4>
+		<% if @tobe.image.present? %>
+			<div class="tobe-image">
+		  		<img src="<%= @tobe.image.url %>"/>
+			</div>
+			<br>
+		<% end %>
 
-<h4>	
-	posted by <a href="<%= user_path(@tobe.user) %>"> <%= @tobe.user.email %></a>
-</h4>
-
-</p>
-
-<% if @tobe.image.present? %>
-	<h4>Image:</h4>
-	<div>
-  		<img src="<%= @tobe.image.url %>"/>
+		<hr>
+		<p><%= @tobe.description %> <br>
+		<hr>
+		posted by <a href="<%= user_path(@tobe.user) %>"> <%= @tobe.user.email %></a> <%= time_ago_in_words( @tobe.created_at ) %> ago
+		</p>
+		<hr>
+		<div>
+				<a href="<%= edit_tobe_path( @tobe ) %>" class="btn">Edit To Be</a><br>
+				<%= button_to "Delete To Be", tobe_path(@tobe), :method => :delete, :class => "btn"  %>
+		</div>
 	</div>
-	<br>
-<% end %>
-
-
-
-
-
-<div>
-	<a href="<%= edit_tobe_path( @tobe ) %>" class="btn">Edit To Be</a>
-</div>
-<div>
-	<%= button_to "Delete To Be", tobe_path(@tobe), :method => :delete, :class => "btn"  %>
-</div>
-
-
-<% if user_signed_in? %>
-	<%= form_for [@tobe, @journal] do |f| %>
-		<%= f.text_field :title, :placeholder => "Title" %><br>
-		<%= f.text_area :body, :placeholder => "Entry", :rows => 8, :cols => 40 %>
-		<br>
-		<%= f.submit "Submit Journal" %>
-	<% end %>
-<% end %>
-
-
-<div id="journal">
-  <ul>
-    <% @tobe.journals.each do | journal | %>
-    <%= render :partial => "journals/journal", :locals => { :journal => journal } %>
-    <% end %>
-  </ul>
+	<div id="span4">
+		<h2> Notes: </h2>
+		  <ul>
+		    <% @tobe.journals.each do | journal | %>
+		    <%= render :partial => "journals/journal", :locals => { :journal => journal } %>
+		    <% end %>
+		  </ul>
+		<% if user_signed_in? %>
+			<%= form_for [@tobe, @journal] do |f| %>
+				<%= f.text_field :title, :placeholder => "Title" %><br>
+				<%= f.text_area :body, :placeholder => "Entry", :rows => 8, :cols => 40 %>
+				<br>
+				<%= f.submit "Submit Journal" %>
+			<% end %>
+		<% end %>
+	</div>	
 </div>

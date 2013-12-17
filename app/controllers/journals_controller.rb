@@ -8,7 +8,7 @@ class JournalsController < ApplicationController
 
     @journal = Journal.new(safe_journal)
     @journal.tobe = @tobe
-    #@journal.user = current_user
+    @journal.user = current_user
     @journal.save
 
     redirect_to @journal.tobe
