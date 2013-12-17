@@ -17,7 +17,7 @@ class TobesController < ApplicationController
 		@tobe.user = current_user
 
 		if @tobe.save
-			redirect_to tobes_path # if everything is peachy
+			redirect_to tobes_path(@tobe) # if everything is peachy
 		else
 			render :new #show the form again
 		end
@@ -26,6 +26,7 @@ class TobesController < ApplicationController
 	def show
 		@tobe = Tobe.find(params[:id])
 		@sitesection = :explore
+		@journal = Journal.new
 
 	end
 
@@ -48,7 +49,7 @@ class TobesController < ApplicationController
 	private #gets called only inside controller
 
 	def safe_tobe_params
-		return params.require(:tobe).permit(:title, :reason, :description)
+		return params.require(:tobe).permit(:title, :reason, :description, :image)
 	end
 
 

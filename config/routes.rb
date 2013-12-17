@@ -5,8 +5,12 @@ TwoBees::Application.routes.draw do
   root 'main#index'
 
 
-  resources :tobes
+  resources :tobes do
+     resources :journals
+   end
+ 
   resources :users
+
 
   get 'how_it_works' => 'main#how_it_works'
   

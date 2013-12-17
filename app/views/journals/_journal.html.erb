@@ -1,0 +1,8 @@
+<li>
+  <p><b><%= journal.title%></b><br>
+	<%= journal.body%>
+  </p>
+  <p>
+  	Entry posted <%= time_ago_in_words( journal.created_at ) %> ago
+  </p>
+</li>

@@ -19,6 +19,9 @@
 	<%= f.label :description, "description" %>
 	<%= f.text_area :description, :size => "30x10" %>
 
+	<%= f.label :image %>
+	<%= f.file_field :image %>
+
 	<%= f.submit "Submit" %>
 
 <% end %>

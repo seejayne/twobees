@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-
-
-  has_many :tobes       
+  has_many :tobes  
+  has_many :journals      
 end
