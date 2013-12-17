@@ -10,6 +10,7 @@ TwoBees::Application.routes.draw do
    end
  
   resources :users
+  resources :categories 
 
 
   get 'how_it_works' => 'main#how_it_works'

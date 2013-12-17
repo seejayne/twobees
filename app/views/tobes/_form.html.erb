@@ -8,20 +8,26 @@
 	</ul>
 <% end %>
 
-<%= form_for @tobe do |f| %>
+<%= form_for @tobe, :html => { :class => "form-tobe" }  do |f| %>
+
+	<%= label_tag :category %>
+
+    <%= text_field_tag :category, @category, :data => { :provide => "typeahead", :source => @categories }, :autocomplete => "off", :required => true, :class => "field span6", :rows => "6" %>
+
 
 	<%= f.label :title, "I want to be..." %>
-	<%= f.text_field :title %>
+	<%= f.text_field :title, :class => "field span6" %>
 
 	<%= f.label :reason, "because..." %>
-	<%= f.text_area :reason %>
+	<%= f.text_area :reason, :class => "field span6" %>
 
-	<%= f.label :description, "description" %>
-	<%= f.text_area :description, :size => "30x10" %>
+	<%= f.label :description, "More Details" %>
+	<%= f.text_area :description, :class => "field span6", :rows => "6" %>
 
 	<%= f.label :image %>
 	<%= f.file_field :image %>
-
-	<%= f.submit "Submit" %>
+	<hr>
+	<%= f.submit "Submit", :class => "btn" %>
 
 <% end %>
+

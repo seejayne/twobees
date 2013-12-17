@@ -6,6 +6,8 @@ class TobesController < ApplicationController
 	def index
 		@tobes = Tobe.order("created_at DESC")
 		@sitesection = :explore
+		@categories = Category.order(:title)
+		@user = User.new
 	end
 
 	def new
@@ -15,6 +17,12 @@ class TobesController < ApplicationController
 	def create
 		@tobe = Tobe.new( safe_tobe_params )
 		@tobe.user = current_user
+
+		@category = params[:category]
+	    @tobe.category = Category.where(:title => @category.capitalize).first_or_create
+
+    	@categories = Category.pluck(:title)
+
 
 		if @tobe.save
 			redirect_to tobes_path(@tobe) # if everything is peachy
